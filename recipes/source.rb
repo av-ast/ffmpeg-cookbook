@@ -76,6 +76,7 @@ bash "compile_ffmpeg" do
   code <<-EOH
     ./configure --prefix=#{node[:ffmpeg][:prefix]} #{node[:ffmpeg][:compile_flags].join(' ')}
     make clean && make && make install
+    make tools/qt-faststart && make install tools/qt-faststart
   EOH
   creates "#{node[:ffmpeg][:prefix]}/bin/ffmpeg"
 end
